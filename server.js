@@ -44,7 +44,7 @@ app.get('/office', (req, res) => {
 });
 
 app.get('/openhouse', (req, res) => {
-    bridgeService.getOpenhouse().then(function(openhouses){
+    bridgeService.getOpenHouse().then(function(openhouses){
         res.json(openhouses);
     }).catch(function(err){
         console.log(err);
@@ -52,7 +52,44 @@ app.get('/openhouse', (req, res) => {
     });
 });
 
+app.get('/property/:id', (req, res) => {
+    bridgeService.getProperty(req.params.id).then(function(property){
+        res.json(property);
+    }).catch(function(err){
+        console.log(err);
+        res.status(400).json(err);
+    });
+});
 
+
+app.get('/member/:id', (req, res) => {
+    bridgeService.getMember(req.params.id).then(function(member){
+        res.json(member);
+    }).catch(function(err){
+        console.log(err);
+        res.status(400).json(err);
+    });
+});
+
+
+app.get('/office/:id', (req, res) => {
+    bridgeService.getOffice(req.params.id).then(function(office){
+        res.json(office);
+    }).catch(function(err){
+        console.log(err);
+        res.status(400).json(err);
+    });
+});
+
+
+app.get('/openhouse/:id', (req, res) => {
+    bridgeService.getOpenHouse(req.params.id).then(function(openhouse){
+        res.json(openhouse);
+    }).catch(function(err){
+        console.log(err);
+        res.status(400).json(err);
+    });
+});
 
 app.get('/', (req, res) => {
     res.send("bridge-service");
